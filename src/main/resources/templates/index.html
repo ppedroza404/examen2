@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Employee</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2" align="center">
+
+    <h3>Lista De Futbolistas</h3>
+    <a th:href="@{/registrar}" class="btn btn-primary btn-sm mb-3" >Agregar</a>
+
+    <table style="width:80%" border="1"
+           class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Posicion</th>
+            <th>Division</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="futbolista:${allPlayersList}">
+            <td th:text="${futbolista.getNombreCompleto}"></td>
+            <td th:text="${futbolista.posicion}"></td>
+            <td th:text="${futbolista.ramaJuega}"></td>
+
+            <td> <a th:href="@{/showFormForUpdate/{id}(id=${futbolista.id})}"
+                    class="btn btn-primary">Modificar</a>
+                <a th:href="@{/view/{id}(id=${futbolista.id})}"
+                    class="btn btn-primary">Ver</a>
+                <a th:href="@{/deleteEmployee/{id}(id=${futbolista.id})}"
+                   class="btn btn-danger">Borrar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col">
+            <a th:href="@{/viewhistorial/}"  class="btn btn-primary">Historial</a>
+        </div>
+        <div class="col">
+            <a th:href="@{/datosAprox}" class="btn btn-primary">Buscar</a>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>
